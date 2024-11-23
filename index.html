@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SL Mafia Gang - OnlineLK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon"
+        href="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+        type="image/png" sizes="32x32">
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://i.ibb.co/WHbGs89/wallpaperflare-com-wallpaper-1.jpg') center/cover;
+            color: #e50914;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    rgba(229, 9, 20, 0.1),
+                    rgba(229, 9, 20, 0.1) 10px,
+                    rgba(0, 0, 0, 0.1) 10px,
+                    rgba(0, 0, 0, 0.1) 20px);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(229, 9, 20, 1), 0 0 30px rgba(229, 9, 20, 0.8);
+            }
+        }
+
+        .navbar {
+            background-color: rgba(34, 34, 34, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.4);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: #e50914;
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0 15px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e50914;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #e50914;
+            font-size: 3.5rem;
+            margin: 70px 0 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 15px rgba(229, 9, 20, 0.6);
+        }
+
+        .goal {
+            background: linear-gradient(145deg, rgba(34, 34, 34, 0.9), rgba(17, 17, 17, 0.9));
+            padding: 40px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(229, 9, 20, 0.1);
+        }
+
+        .goal:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.5);
+            border-color: rgba(229, 9, 20, 0.3);
+        }
+
+        .members-section {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
+            padding: 70px 20px;
+            position: relative;
+        }
+
+        .member-card {
+            background: linear-gradient(145deg, rgba(34, 34, 34, 0.95), rgba(17, 17, 17, 0.95));
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            margin: 25px;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .member-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .member-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #e50914;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .member-founder-badge {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 5px 10px rgba(255, 215, 0, 0.5);
+            text-transform: uppercase;
+            border: 2px solid #DAA520;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #DAA520;
+        }
+
+        .member-co-founder-badge {
+            background: linear-gradient(90deg, #C0C0C0, #D3D3D3);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 5px 10px rgba(192, 192, 192, 0.5);
+            text-transform: uppercase;
+            border: 2px solid #A9A9A9;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #A9A9A9;
+        }
+
+        .member-regular-badge {
+            background: linear-gradient(90deg, #87CEEB, #4682B4);
+            color: #FFF;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 5px 10px rgba(135, 206, 235, 0.5);
+            text-transform: uppercase;
+            border: 2px solid #1E90FF;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #4682B4;
+        }
+
+        .member-badge {
+            background: linear-gradient(90deg, #808080, #696969);
+            color: #FFF;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 5px 10px rgba(128, 128, 128, 0.5);
+            text-transform: uppercase;
+            border: 2px solid #505050;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #505050;
+        }
+
+
+
+        .member-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .see-more-btn {
+            background: linear-gradient(45deg, #e50914, #ff0f1a);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .see-more-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
+            background: linear-gradient(45deg, #ff0f1a, #e50914);
+        }
+
+        footer {
+            background-color: rgba(34, 34, 34, 0.95);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 2px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .powered-by {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(145deg, rgba(51, 51, 51, 0.95), rgba(34, 34, 34, 0.95));
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .powered-by:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        .powered-text {
+            font-size: 1.1rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .onlinelk-link {
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .online {
+            color: #e50914;
+            margin-right: 2px;
+        }
+
+        .lk {
+            color: #fff;
+        }
+
+        .onlinelk-link:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(229, 9, 20, 0.5), transparent);
+            margin: 20px 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(51, 51, 51, 0.95), rgba(34, 34, 34, 0.95));
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link:hover {
+            color: #e50914;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .powered-by {
+                margin-bottom: 20px;
+            }
+
+            footer {
+                text-align: center;
+            }
+
+            .social-links {
+                margin-top: 20px;
+            }
+        }
+
+        .hidden-members {
+            display: none;
+        }
+
+        .social-section {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.95));
+            padding: 70px 0;
+            position: relative;
+        }
+
+        .social-card {
+            background: linear-gradient(145deg, rgba(34, 34, 34, 0.95), rgba(17, 17, 17, 0.95));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(229, 9, 20, 0.1);
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.5);
+            border-color: rgba(229, 9, 20, 0.3);
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #e50914;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2);
+        }
+
+        .whatsapp-group {
+            background: linear-gradient(45deg, #25d366, #128C7E);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+            color: white;
+        }
+
+        .discord-btn {
+            background: linear-gradient(45deg, #7289da, #5865F2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(114, 137, 218, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(114, 137, 218, 0.6);
+            color: white;
+        }
+
+        .contact-info {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .floating-whatsapp .whatsapp-group {
+            margin: 0;
+            padding: 15px 25px;
+        }
+
+        /* Media Query for 768px or smaller */
+@media (max-width: 768px) {
+    #contact .container {
+        padding: 20px;
+    }
+
+    #contact .section-title {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #contact .social-card {
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #contact .social-icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    #contact .social-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    #contact .social-card p.contact-info {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    #contact .whatsapp-group,
+    #contact .discord-btn {
+        display: inline-block;
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    #contact .d-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #contact .d-flex a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .floating-whatsapp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .floating-whatsapp a.whatsapp-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #25D366;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .floating-whatsapp a.whatsapp-group:hover {
+        background: #1EBE5A;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .floating-whatsapp a.whatsapp-group i {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+    #members {
+        padding: 20px 15px;
+    }
+
+    #members .container {
+        padding: 0;
+    }
+
+    #members .section-title {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    #members .members-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                alt="SL Mafia Gang Logo" height="80" class="navbar-brand rounded-4"
+                style="display: block; margin: 1 auto; border: 2px solid #e50914; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);">
+            <a class="navbar-brand" href="/">SL Mafia Gang</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#members">Gang Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to SL Mafia Gang</h1>
+            <p class="lead" style="font-size: 1.5rem; color: #fff;">A group of unruly members of the OnlineLK Server</p>
+            <p style="font-size: 1.3rem; color: #fff;"><strong>Loyalty is key, and strategy is our weapon</strong></p>
+            <button class="see-more-btn" id="joinUsBtn">Join Us</button>
+        </div>
+    </div>
+
+    <!-- Goals Section -->
+    <div id="goals" class="container">
+        <h2 class="section-title">Our Goals</h2>
+        <div class="goal-list d-flex justify-content-center flex-wrap">
+            <div class="goal">
+                <h4>💥 Grand Theft</h4>
+                <p>We rule every mission with unmatched skill and power!</p>
+            </div>
+            <div class="goal">
+                <h4>💣 Harassing Players</h4>
+                <p>We know how to create chaos and enjoy every moment.</p>
+            </div>
+            <div class="goal">
+                <h4>🛡️ Rule Follower</h4>
+                <p>We respect the rules of the OnlineLK server... well, most of the time!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Members Section -->
+    <div id="members" class="members-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Gang Members</h2>
+            <div class="d-flex justify-content-center flex-wrap" id="member-cards">
+                <!-- Initial Members -->
+                <div class="member-card">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 1">
+                    <h4>|MF|AKAZ</h4>
+                    <p class="member-founder-badge mb-2">FOUNDER</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 2">
+                    <h4>|MF|ZIKO</h4>
+                    <p class="member-founder-badge mb-2">FOUNDER</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 3">
+                    <h4>|MF|YxKING</h4>
+                    <p class="member-founder-badge mb-2">FOUNDER</p>
+                </div>
+                <!-- Hidden Members -->
+                <div class="member-card hidden-members">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 4">
+                    <h4>|MF|ZERO</h4>
+                    <p class="member-co-founder-badge mb-2">CO-FOUNDER</p>
+                </div>
+
+                <div class="member-card hidden-members">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 4">
+                    <h4>|MF|SADEW</h4>
+                    <p class="member-badge mb-2">MEMBER</p>
+                </div>
+                <div class="member-card hidden-members">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 5">
+                    <h4>|MF|HANSAMALA</h4>
+                    <p class="member-badge mb-2">MEMBER</p>
+                </div>
+                <div class="member-card hidden-members">
+                    <img src="https://i.ibb.co/SxCqnrf/Leonardo-Phoenix-A-bold-and-striking-logo-for-the-SRI-LANKA-MA-3.jpg"
+                        alt="Member 6">
+                    <h4>|MF|NOKI</h4>
+                    <p class="member-badge mb-2">MEMBER</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="see-more-btn" id="seeMoreBtn">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="social-section">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="social-card">
+                        <i class="bi bi-whatsapp social-icon"></i>
+                        <h3>WhatsApp Group</h3>
+                        <p class="contact-info">Join our official WhatsApp group for daily updates and coordination</p>
+                        <a href="https://chat.whatsapp.com/ERiJMklH5UXI6el5hmMFvE" class="whatsapp-group pulse">
+                            <i class="bi bi-whatsapp"></i>
+                            Join Group
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="social-card">
+                        <i class="bi bi-discord social-icon"></i>
+                        <h3>Discord Server</h3>
+                        <p class="contact-info">Join our Discord server for voice chat and team coordination</p>
+                        <a href="https://discord.gg/KHTkrsG" class="discord-btn">
+                            <i class="bi bi-discord"></i>
+                            Join Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="social-card">
+                        <h3>Contact Admins</h3>
+                        <p class="contact-info">Have questions? Contact <a href="https://onlinelk.net/"
+                                class="onlinelk-link"><span class="online">Online</span><span class="lk">LK</span></a>
+                            Administrators directly:</p>
+                        <div class="d-flex justify-content-center gap-4 mt-4">
+                            <a href="https://wa.me/94787733365" class="whatsapp-group">
+                                <i class="bi bi-whatsapp"></i>
+                                Admin WhatsApp
+                            </a>
+                            <a href="https://discord.gg/KHTkrsG" class="discord-btn">
+                                <i class="bi bi-discord"></i>
+                                Admin Discord
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-whatsapp">
+        <a href="https://chat.whatsapp.com/ERiJMklH5UXI6el5hmMFvE" class="whatsapp-group">
+            <i class="bi bi-whatsapp"></i>
+            Join Group
+        </a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center align-items-center mb-4">
+                <div class="col-md-6 text-center">
+                    <div class="powered-by">
+                        <span class="powered-text">Powered By</span>
+                        <a href="https://onlinelk.net/" class="onlinelk-link">
+                            <span class="online">Online</span><span class="lk">LK</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="row mt-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 SL Mafia Gang | All Rights Reserved</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-links">
+                        <a href="https://wa/me/94760510568" class="social-link">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://discord.gg/KHTkrsG" class="social-link">
+                            <i class="bi bi-discord"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function animateCards() {
+            const cards = document.querySelectorAll('.member-card:not(.hidden-members)');
+            cards.forEach((card) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const triggerBottom = window.innerHeight * 0.8;
+
+                if (cardTop < triggerBottom) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        const seeMoreBtn = document.getElementById('seeMoreBtn');
+        const hiddenMembers = document.querySelectorAll('.hidden-members');
+        let isExpanded = false;
+
+        seeMoreBtn.addEventListener('click', () => {
+            hiddenMembers.forEach(member => {
+                member.style.display = isExpanded ? 'none' : 'block';
+                if (!isExpanded) {
+                    setTimeout(() => {
+                        member.classList.add('visible');
+                    }, 100);
+                }
+            });
+
+            seeMoreBtn.textContent = isExpanded ? 'See More' : 'See Less';
+            isExpanded = !isExpanded;
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', animateCards);
+        window.addEventListener('load', animateCards);
+
+        window.addEventListener('scroll', function () {
+            const floatingBtn = document.querySelector('.floating-whatsapp');
+            if (window.scrollY > 300) {
+                floatingBtn.style.opacity = '1';
+            } else {
+                floatingBtn.style.opacity = '0';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.getElementById('joinUsBtn').addEventListener('click', function () {
+            window.location.href = 'https://chat.whatsapp.com/ERiJMklH5UXI6el5hmMFvE';
+        });
+    </script>
+</body>
+
+</html>
